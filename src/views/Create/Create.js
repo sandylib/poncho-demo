@@ -56,15 +56,14 @@ export default function Create() {
         body: JSON.stringify({...values, age: getAge(values['age']), salary: Number(values['salary'])}),
       };
       await delay(300);
-      const response = await request(APP_URL, options);
-      const data = response.json();
+      const data = await request(APP_URL, options);
       if(data && data.userId){
         setUserId(data.userId);
       }
       setValues(INITIAL_STATE);
       setErrors(INITIAL_ERRRORS)
       setInprogress(false);
-      
+
     } catch (error) {
       throw error;
     } finally {
