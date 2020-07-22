@@ -53,20 +53,20 @@ export default function Create() {
       setInprogress(true);
       const options = {
         method: 'POST', 
-        body: JSON.stringify({...values, age: getAge(values['age'])}),
+        body: JSON.stringify({...values, age: getAge(values['age']), salary: Number(values['salary'])}),
       };
       await delay(300);
       const response = await request(APP_URL, options);
       const data = response.json();
+      
+    } catch (error) {
+      throw error;
+    } finally {
       setUserId(uuidv4());
       setValues(INITIAL_STATE);
       setErrors(INITIAL_ERRRORS)
       setInprogress(false);
-    } catch (error) {
-      setValues(INITIAL_STATE);
-      setErrors(INITIAL_ERRRORS);
-      setUserId(uuidv4());
-      setInprogress(false);
+
     }
   
 }
