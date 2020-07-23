@@ -115,6 +115,10 @@ export default function Create() {
                 value={values.age}
                 onChange={onChange}
                 autoComplete="age"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                InputProps={{inputProps: { min: "1900-05-01", max: "2020-01-01"} }}
                 
               />
             </Grid>

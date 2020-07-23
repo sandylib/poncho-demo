@@ -13,25 +13,6 @@ const Input = ({id, name, type, label, disabled, value, placeholder, onChange, a
   }, [value]);
   
   return (
-     type === 'date' ?
-     <TextField
-        id={id}
-        label={label}
-        type="date"
-        fullWidth
-        error={error}
-        value={values}
-        helperText={error ? errorMessage : ''}
-        variant="outlined"
-        disabled={disabled}
-        onChange={onHandleChange}
-        autoComplete={name}
-        autoFocus={autoFocus}
-        InputLabelProps={{
-          shrink: true,
-        }}
-        InputProps={{inputProps: { min: "1900-05-01", max: "2020-01-01"} }}
-      />  :
       <TextField
         value={values}
         type={type || 'text'}
@@ -47,6 +28,7 @@ const Input = ({id, name, type, label, disabled, value, placeholder, onChange, a
         onChange={onHandleChange}
         autoComplete={name}
         autoFocus={autoFocus}
+        {...rest}
         />
   )
 }
