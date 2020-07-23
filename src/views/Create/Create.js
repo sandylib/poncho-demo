@@ -3,13 +3,11 @@ import { v4 as uuidv4 } from 'uuid';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Input from '../../components/Input/Input';
-import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import Container from '@material-ui/core/Container';
 import {Loading} from '../../components/Loading/Loading';
 import {APP_URL, APP_ERROR_MESSAGE, INITIAL_ERRRORS, INITIAL_STATE } from '../../constants/applicationConstants';
 import {regexAge, regexStr, regexNum, getAge, delay} from '../../utils/help';
-import { useStyles } from '../../utils/multiHelp';
+import { useStyles, MainWrapper, Row, Wrapper} from '../../utils/multiHelp';
 import request from '../../utils/request';
 import Logo from '../../poncho-insurance-logo.svg'
 
@@ -77,7 +75,7 @@ export default function Create() {
 }
 
   return (
-    <Container component="main" maxWidth="xs">
+    <MainWrapper>
       <CssBaseline />
       <div className={classes.paper}>
         <Typography component="h1" variant="h5">
@@ -87,8 +85,8 @@ export default function Create() {
          {userId}
         </Typography>}
         <form className={classes.form} noValidate>
-          <Grid container spacing={2}>
-            <Grid item xs={12}>
+          <Wrapper>
+            <Row>
               <Input 
                 data-testid={`input-name`}
                 disabled={inprogress}
@@ -102,27 +100,26 @@ export default function Create() {
                 autoComplete="name"
                 autoFocus
               />
-            </Grid>
-            <Grid item xs={12}>
-            <Input 
-                data-testid={`input-age`}
-                type="date"
-                disabled={inprogress}
-                errorMessage={APP_ERROR_MESSAGE.AGE}
-                error={errors.age}
-                id={'age'}
-                label={'DOB'}
-                value={values.age}
-                onChange={onChange}
-                autoComplete="age"
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                InputProps={{inputProps: { min: "1900-05-01", max: "2020-01-01"} }}
-                
-              />
-            </Grid>
-            <Grid item xs={12}>
+            </Row>
+            <Row>
+              <Input 
+                  data-testid={`input-age`}
+                  type="date"
+                  disabled={inprogress}
+                  errorMessage={APP_ERROR_MESSAGE.AGE}
+                  error={errors.age}
+                  id={'age'}
+                  label={'DOB'}
+                  value={values.age}
+                  onChange={onChange}
+                  autoComplete="age"
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  InputProps={{inputProps: { min: "1900-05-01", max: "2020-01-01"} }}
+                />
+            </Row>
+            <Row>
               <Input 
                   data-testid={`input-salary`}
                   disabled={inprogress}
@@ -138,8 +135,8 @@ export default function Create() {
                     shrink: true,
                   }}
                 />
-            </Grid>
-          </Grid>
+            </Row>
+          </Wrapper>
           <Button
             type="submit"
             onClick={onSubmit}
@@ -154,6 +151,6 @@ export default function Create() {
         </form>
       </div>
       {inprogress && <Loading />}
-    </Container>
+    </MainWrapper>
   );
 }
